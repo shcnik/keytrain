@@ -23,7 +23,7 @@ class MenuScreen(Screen):
         self.__animate = False
 
     def enter(self):
-        Window.size = (800, 200)
+        Window.size = (400, 300)
         Window.set_title('KeyTrain')
 
     def update(self, config):

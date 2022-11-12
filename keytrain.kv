@@ -1,0 +1,214 @@
+#:kivy 2.1.0
+#:import events events
+
+<MenuScreen>:
+    id: menu
+    on_pre_enter: self.enter()
+    BoxLayout:
+        Button:
+            id: start_btn
+            text: 'Start'
+            font_size: '20pt'
+            on_press: events.start(self.parent.parent)
+        Button:
+            id: stat_btn
+            text: 'Statistics'
+            font_size: '20pt'
+            on_press: events.stats(self.parent.parent)
+        Button:
+            id: settings_btn
+            text: 'Settings'
+            font_size: '20pt'
+            on_press: events.settings(self.parent.parent)
+        Button:
+            id: quit_btn
+            text: 'Quit'
+            font_size: '20pt'
+            on_press: events.quit_menu()
+
+<TrainScreen>:
+    id: train
+    on_pre_enter: self.enter()
+    FloatLayout:
+        Label:
+            id: task_label
+            size_hint: 1.0, 0.4
+            pos_hint: {'top': 1.0, 'right': 1.0}
+            text_size: 1500, None
+            halign: 'center'
+            font_size: '18pt'
+            bold: True
+        TextInput:
+            id: task_input
+            size_hint: 1.0, 0.4
+            pos_hint: {'top': 0.6, 'right': 1.0}
+            halign: 'center'
+            font_size: '18pt'
+            input_filter: events.input_check
+            disabled: True
+            on_text: events.text_check(self.parent.parent)
+        Button:
+            id: start_btn
+            size_hint: 0.5, 0.1
+            pos_hint: {'top': 0.2, 'right': 0.5}
+            text: 'Start Training'
+            font_size: '20pt'
+            on_release: events.start_train(self.parent.parent)
+        Button:
+            id: quit_btn
+            size_hint: 0.5, 0.1
+            pos_hint: {'top': 0.2, 'right': 1.0}
+            text: 'Quit'
+            font_size: '20pt'
+            on_press: events.quit_train(self.parent.parent)
+        Label:
+            text: 'Time elapsed:'
+            size_hint: 0.2, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.2 }
+            halign: 'left'
+            valign: 'center'
+        Label:
+            id: time_lbl
+            text: '0:00'
+            size_hint: 0.1, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.3 }
+            halign: 'right'
+            valign: 'center'
+        Label:
+            text: 'Typing speed:'
+            size_hint: 0.2, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.55}
+            halign: 'left'
+            valign: 'center'
+        Label:
+            id: speed_lbl
+            text: '0.0'
+            size_hint: 0.1, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.65}
+            halign: 'right'
+            valign: 'center'
+        Label:
+            text: 'Error rate:'
+            size_hint: 0.2, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.90}
+            halign: 'left'
+            valign: 'center'
+        Label:
+            id: error_lbl
+            text: '0.0 %'
+            size_hint: 0.1, 0.1
+            pos_hint: {'top': 0.1, 'right': 1.00}
+            halign: 'right'
+            valign: 'center'
+
+
+<ResultScreen>:
+    on_enter: self.enter()
+    FloatLayout:
+        GridLayout:
+            size_hint: 0.5, 0.25
+            pos_hint: {'top': 1.0, 'right': 0.5}
+            cols: 2
+            Label:
+                text: 'Time elapsed:'
+                size_hint_x: 0.8
+                halign: 'left'
+                valign: 'center'
+                font_size: '20pt'
+            Label:
+                id: time_lbl
+                text: '0:00'
+                size_hint_x: 0.2
+                halign: 'right'
+                valign: 'center'
+                font_size: '20pt'
+            Label:
+                text: 'Typing speed:'
+                size_hint_x: 0.8
+                halign: 'left'
+                valign: 'center'
+                font_size: '20pt'
+            Label:
+                id: speed_lbl
+                text: '0.0'
+                size_hint_x: 0.2
+                halign: 'right'
+                valign: 'center'
+                font_size: '20pt'
+            Label:
+                text: 'Error rate:'
+                size_hint_x: 0.8
+                halign: 'left'
+                valign: 'center'
+                font_size: '20pt'
+            Label:
+                id: error_lbl
+                text: '0.0 %'
+                size_hint_x: 0.2
+                halign: 'right'
+                valign: 'center'
+                font_size: '20pt'
+        BoxLayout:
+            size_hint: 0.5, 0.25
+            pos_hint: {'top': 1.0, 'right': 1.0}
+            orientation: 'vertical'
+            Button:
+                id: repeat_btn
+                text: 'Repeat'
+                on_press: events.repeat(self.parent.parent.parent)
+                font_size: '20pt'
+            Button:
+                id: menu_btn
+                text: 'Menu'
+                on_press: events.menu(self.parent.parent.parent)
+                font_size: '20pt'
+
+<StatScreen>:
+    on_enter: self.enter()
+    FloatLayout:
+        GridLayout:
+            pos_hint: {'top': 1.0, 'right': 1.0}
+            size_hint: 1.0, 0.1
+            cols: 3
+            Label:
+                text: 'Training time'
+                font_size: '20pt'
+                bold: True
+                size_hint_x: None
+                width: 800
+                halign: 'left'
+            Label:
+                text: 'Speed'
+                font_size: '20pt'
+                bold: True
+                halign: 'center'
+                size_hint_x: None
+                width: 400
+            Label:
+                text: 'Error rate'
+                font_size: '20pt'
+                bold: True
+                halign: 'center'
+                size_hint_x: None
+                width: 400
+        ScrollView:
+            pos_hint: {'top': 0.9, 'right': 1.0}
+            size_hint: 1.0, 0.8
+            GridLayout:
+                id: table
+                size_hint_y: None
+                cols: 3
+                row_default_height: 80
+                row_force_default: True
+        Button:
+            text: 'Clear'
+            on_press: events.clear_stat(self.parent.parent)
+            font_size: '20pt'
+            size_hint: 0.5, 0.1
+            pos_hint: {'top': 0.1, 'right': 0.5}
+        Button:
+            text: 'Menu'
+            on_press: events.menu(self.parent.parent)
+            font_size: '20pt'
+            size_hint: 0.5, 0.1
+            pos_hint: {'top': 0.1, 'right': 1.0}

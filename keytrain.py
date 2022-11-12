@@ -1,5 +1,5 @@
 from kivy.app import App
-
+import kivy
 import events
 from screens import MenuScreen, TrainScreen, SettingsScreen, StatScreen, ResultScreen
 from kivy.uix.screenmanager import ScreenManager, NoTransition
@@ -62,3 +62,8 @@ class KeyTrainApp(App):
     def on_config_change(self, instance, config, section, key, value):
         for scr in self.root.screens:
             scr.update(config)
+
+
+kivy.require('2.1.0')
+if __name__ == '__main__':
+    KeyTrainApp().run()

@@ -15,13 +15,13 @@ Keytrain -- приложение-клавиатурный тренажёр, по
 
 Для работы данного приложения требуется интерпретатор Python 3, а также установленная библиотека Kivy версии не ниже 2.1.0 (<https://kivy.org>). Её можно установить следующей последовательностью команд:
 
-  python3 -m pip install "kivy[full]"
+`python3 -m pip install "kivy[full]"`
 
 ## Запуск и использование
 
 Для того, чтобы запустить приложение, необходимо выполнить в папке, где оно расположено, файл keytrain.py:
 
-  python3 keytrain.py
+`python3 keytrain.py`
 
 После запуска отобразится меню:
 
@@ -32,8 +32,10 @@ Keytrain -- приложение-клавиатурный тренажёр, по
 
 *Обратите внимание:* при выходе в консоли могут появиться следующие сообщения:
 
-  [ERROR  ] [Base        ] No event listeners have been created
-  [ERROR  ] [Base        ] Application will leave
+`
+[ERROR  ] [Base        ] No event listeners have been created
+[ERROR  ] [Base        ] Application will leave
+`
 
 Это нормально и не свидетельствует о сбоях в работе, связано с особенностями работы библиотеки.
 

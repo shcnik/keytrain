@@ -32,10 +32,8 @@ Keytrain -- приложение-клавиатурный тренажёр, по
 
 *Обратите внимание:* при выходе в консоли могут появиться следующие сообщения:
 
-`
-[ERROR  ] [Base        ] No event listeners have been created
-[ERROR  ] [Base        ] Application will leave
-`
+`[ERROR  ] [Base        ] No event listeners have been created`
+`[ERROR  ] [Base        ] Application will leave`
 
 Это нормально и не свидетельствует о сбоях в работе, связано с особенностями работы библиотеки.
 

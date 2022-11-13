@@ -57,6 +57,7 @@ class KeyTrainApp(App):
         for scr in sm.screens:
             self.localize(scr)
         Window.borderless = '0'
+        sm.current = 'Menu'
         return sm
 
     def on_config_change(self, instance, config, section, key, value):
@@ -67,3 +68,4 @@ class KeyTrainApp(App):
 kivy.require('2.1.0')
 if __name__ == '__main__':
     KeyTrainApp().run()
+ 

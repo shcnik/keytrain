@@ -123,13 +123,12 @@ class SettingsScreen(Screen):
         super().__init__(**kwargs)
         config = ConfigParser()
         config.read('keytrain.ini')
-        set = Settings()
-        set.add_json_panel('Settings', config, data=self.__generate_json())
-        set.bind(on_close=partial(events.exit_settings, self.manager))
-        set.bind(on_config_change=App.get_running_app().on_config_change)
+        self.set = Settings()
+        self.set.add_json_panel('Settings', config, data=self.__generate_json())
+        self.set.bind(on_config_change=App.get_running_app().on_config_change)
         self.on_enter = self.enter
-        self.add_widget(set)
-        for setting in set.children[0].children[0].children[0].children[0].children:
+        self.add_widget(self.set)
+        for setting in self.set.children[0].children[0].children[0].children[0].children:
             if len(setting.children) == 0:
                 continue
             lines = setting.children[0].children[1].text.split('\n')
@@ -139,6 +138,7 @@ class SettingsScreen(Screen):
                 App.get_running_app().locale.setdefault(lines[1], lines[1]))
 
     def enter(self):
+        self.set.bind(on_close=partial(events.exit_settings, self.manager))
         Window.size = (800, 800)
 
     def update(self, config):
@@ -221,8 +221,7 @@ class ResultScreen(Screen):
         self.ids['error_lbl'].text = '{:.1%}'.format(stats['errate'])
         heatmap = {}
         try:
-            self.manager.get_screen('Train').trainer.stat.get_heatmap(self.keylayout)
+            heatmap = self.manager.get_screen('Train').trainer.stat.get_heatmap(self.keylayout)
         except InvalidLayoutException as ex:
             logger.log('%s. Layout not loaded.' % ex.msg, 'error')
         self.__draw_keyboard(heatmap)
-
